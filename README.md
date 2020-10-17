@@ -1,1 +1,1 @@
-# MDX-Files-for-Review - edited grammatical errors, punctuation and spellings.
+# MDX-Files-for-Review (edited grammatical errors, punctuation and spelling etc.)
