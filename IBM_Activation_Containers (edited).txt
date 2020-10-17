@@ -1,0 +1,23 @@
+---
+title: Container Activities
+---
+
+## Containers
+
+Task Requirements:
+ - Read through the containers concepts page.
+ - Create a Katacoda Account.
+ - Run Docker Desktop  on your machine.
+
+
+| Task                            | Description         | Link        | Time    |
+| --------------------------------| ------------------  |:----------- |---------|
+| *** Walkthroughs ***                         |         |         |     |
+| What is a Container? | A look under the covers of "what is a Linux Container?" | <a href="https://www.katacoda.com/courses/container-runtimes/what-is-a-container" target="_blank">Understand Containers</a> | 10 min |
+| What is an Image? | A look under the the covers of "what is a Linux Container Image?" | <a href="https://www.katacoda.com/courses/container-runtimes/what-is-a-container-image" target="_blank">Container Images</a> | 10 min |
+| Docker Basics | Set of walkthroughs that cover Docker Basics | <a href="https://www.katacoda.com/courses/docker" target="_blank">Docker Basics</a> | 10 min |
+| *** Try It Yourself ***                         |         |         |     |
+| Docker Lab | Guidfe on how to run a Sample Application on Docker | [Docker Lab](/activities/containers/labs/lab1) | 30 min |
+
+
+Once you have completed these tasks, you should have a basic understanding of containers and how to use Docker.
