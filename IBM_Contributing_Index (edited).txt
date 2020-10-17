@@ -1,0 +1,151 @@
+---
+title: Contributing
+---
+
+## Roles and responsibilities
+
+### Consumers
+
+_Consumers_ are members of the community who are applying assets to their development projects. Anyone who wants to apply any of the assets can be a user. We encourage consumers to participate as evangelists and contributors as well.
+
+### Evangelists
+
+_Evangelists_ are members of the community who help others become consumers of the assets. Responsibilities:
+- Advertise the assets and encourage others to use them
+- Support new consumers by answering questions e.g., Slack (IBM internal)
+- Report bugs or missing features through GitHub issues
+
+### Contributors
+
+_Contributors_ are members of the community who help maintain, improve, and expand the assets. Responsibilities:- Evangelize the assets
+- Resolve issues in GitHub to fix bugs, add features, and improve documentation
+- Submit changes as GitHub pull requests
+
+### Maintainers
+
+_Project maintainers_ (aka maintainers) are project owners committed to the success of the assets in that project. Each project has designated team of maintainers, with a corresponding team lead. In addition to their participation as contributors, maintainers have these privileges:
+- Label, close, and manage GitHub issues
+- Close and merge GitHub pull requests
+- Nominate and vote on new maintainers
+
+## Types of teams
+
+### Core team
+
+Core team members are IBM employees responsible for the leadership and strategic direction of the set of Catalyst projects as a whole. The core team also directs how the Catalyst strategy will evolve with IBM Cloud product decisions. Core team responsibilities include:
+
+- Actively engagea with the projects' communities
+- Sets overall direction and vision
+- Sets priorities and releases schedule
+- Focuses on broad, cross-cutting concerns
+- Spins up or shuts down project teams
+
+The core team operates the technical steering committee.
+
+## Governance
+
+### Support
+ Visit the [Support page](/help/support) if you have any questions or bug issues and any concerns.
+
+## Contributing
+
+## Requirements
+
+Set up your SSH Key GitHub account and install node.js 11 or higher.
+
+- [Generating SSH Keys - GitHub](https://help.github.com/articles/generating-ssh-keys/)
+- [`nvm` (Node Version Manager)](https://github.com/creationix/nvm) to use the
+  `Node 6`.
+
+
+### Make a pull request
+
+**Note:** Before you make a pull request,
+[search](https://github.com/IBM/carbon-components/issues) the issues to see if a
+ similar issue has already been submitted. If a similar issue has been submitted, 
+assign yourself or ask to be assigned to the issue by posting a comment. If the 
+issue does not exist, create a new issue.
+
+ When all is set and you are ready to get feedback from other 
+contributors and maintainers, **push your commits to your fork**:
+
+#### Commit tip
+
+> **Writing commit messages**
+>
+> - `<type>` indicates the type of commit that is being made. Types are categorized as either 
+>   `feat`, `fix`, `perf`, `docs`, `chore`, `style`, or `refactor`
+> - `<scope>` refers to anything that specifies the place of the commit change
+>   or the thing(s) that changed
+>
+> **Commit message format:**
+
+```
+<type>(<scope>): <subject>
+<BLANK LINE>
+<body>
+<BLANK LINE>
+<footer>
+```
+
+_Do not submit pull requests from the `master` branch of your fork._
+
+```
+git checkout -b { YOUR_BRANCH_NAME }
+git add .
+git commit -m "fix(table): IE11 positioning error" -m "Fixes #34"
+```
+
+- [Close a commit via commit message](https://help.github.com/articles/closing-issues-via-commit-messages/)
+
+```
+git push origin { YOUR_BRANCH_NAME }
+```
+
+In your browser, navigate to
+[IBM/carbon-components](https://github.com/IBM/carbon-components) and click the
+ `Compare & pull request`
+
+> button. **Is it a Breaking Change?**
+
+> We want to respect semver. It is important to know whether or not your pull request
+> contains breaking changes. Sometimes, renaming or removing things in
+> the code can result in breaking changes.
+
+> Here are some examples of breaking changes, either changing, renaming or removing
+> any of the following:
+>
+> - HTML attributes
+> - Folders or Files
+> - Any SCSS `@mixin`, `$variable` or `function`
+> - Any JS `function` or `class`
+
+> We also practice **graceful deprecation** when something is expected to be
+> removed - Mark it as deprecated in the current version - Remove it in
+> the next major version. 
+
+Before you create a pull request, change the base branch depending on what kind 
+of change you are submitting.
+
+- Pull requests with **non-breaking changes** (i.e, patches and minor updates), use
+  the `master` as the base branch.
+- Pull requests with **breaking changes**, use the latest `major version number`
+  branch as the base branch (i.e., `7.0.0` or whatever the next major version
+  is).
+
+Write a title and description, then click `Create pull request`.
+
+ - [How to write the perfect pull request](https://github.com/blog/1943-how-to-write-the-perfect-pull-request)
+
+### Updating a pull request
+
+ Stay up to date with the activity in your pull request. Maintainers from the
+Design System team will review your work and make comments, ask 
+questions and suggest changes to be made before they merge your code.
+
+:tada: You no longer need to squash commits :tada:
+
+When you need to make a change or add information, commit and push to your branch normally. 
+
+Once all revisions to your pull request are complete, someone from Design
+Systems will squash and merge your commits for you.
