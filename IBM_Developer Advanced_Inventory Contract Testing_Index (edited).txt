@@ -1,0 +1,252 @@
+﻿---
+title: Inventory Contract Testing
+---
+
+import Globals from 'gatsby-theme-carbon/src/templates/Globals';
+
+As previously discussed, you should already have a thorough understanding of the importance of contract-testing and how it works. In this guide, we will implement contract-testing in the Inventory application. In the inventory application, Inventory-Service provides stock items and works as a provider, while Inventory BFF works as a consumer. Microservices work in isolation. It is the consumer’s responsibility to generate contact and the pact-broker's responsibility is to verify the response for the given request. In this guide, we will explain how to generate a contract(Pact). 
+We will use a ready-	made inventory BFF application, which we have developed in the developer Intermediate guide and implement contract-testing on top of it.        
+
+To start, we have to create a pact by providing parameters (i.e., consumer, provider, port, log, dir).
+
+We can take consumerName from package.json
+```
+const consumerName = npmPackage.name;
+```
+A provider name will be issued upon request. For inventory application, inventory-management-svc is the provider.
+```
+provider: 'inventory-management-svc',
+```
+Next we will provide log and pacts directory. Contract will be stored in the pacts directory. 
+```
+log: resolve(process.cwd(), "logs", "pact.log"),
+dir: resolve(process.cwd(), "pacts"),
+```
+The image below is a code with pact setup. Delay of 30000 was added for local testing, though it is not required for cluster deployment.
+```
+beforeAll(() => {
+    provider = new Pact({
+      consumer: consumerName,
+      provider: 'inventory-management-svc',      
+      port,
+      log: resolve(process.cwd(), "logs", "pact.log"),
+      dir: resolve(process.cwd(), "pacts"),
+    });
+    console.log("in before all, provider setup");
+    return provider.setup();
+  },30000);
+```
+An instance of the component that will be tested was loaded and configured with the pact server host and port as the base url.
+```
+let classUnderTest: StockItemsApi;
+  beforeEach(() => {    
+    Container.bind(StockItemServiceConfig).factory(() => ({
+        baseUrl: `http://localhost:${port}`
+        
+      }));
+
+    classUnderTest = Container.get(StockItemsApi);
+  });
+ ```
+
+Add expected result
+```
+const expectedResult: BackendStockItem = {
+        id: '1234',
+        manufacturer: 'My manufacturer',
+        name: 'product name',
+        price: 20.0,
+        stock: 1000
+};
+```
+The image below is the add interaction, which publishes the interaction to the Pact server so that it can be used to provide a mock response when the request is made.
+``` 
+beforeEach(() => {        
+        return provider.addInteraction({
+          state: 'base state',
+          uponReceiving: 'a request for stock items',
+          withRequest: {
+            method: 'GET',
+            path: '/stock-items',
+            headers: {
+              'Accept': 'application/json',
+            }
+          },
+          willRespondWith: {
+            status: 200,
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: Matchers.eachLike(expectedResult),
+          }
+        });
+      });
+```
+The image below is the test, matching each and every attribute of the response with expected result.
+```
+test('should return inventory data', async () => {
+        const result = await classUnderTest.listStockItems();
+
+        expect(result).toEqual([{
+          id: expectedResult.id,
+          name: expectedResult.name,
+          description: expectedResult.name,
+          stock: expectedResult.stock,
+          unitPrice: expectedResult.price,
+          manufacturer: expectedResult.manufacturer,
+          picture: 'https://via.placeholder.com/32.png',
+        }]);
+      });
+```
+The image below is the final code for contract testing.
+```
+import {join, resolve} from 'path';
+import {Container} from 'typescript-ioc';
+import {Matchers, Pact} from '@pact-foundation/pact';
+
+import {StockItemsApi} from '../../src/services';
+import {StockItemServiceConfig} from '../../src/config';
+import {BackendStockItem} from '../../src/services/stock-items.service';
+
+const npmPackage = require(join(process.cwd(), 'package.json'));
+
+const consumerName = npmPackage.name;
+
+describe('stock-items.service', () => {
+  test('canary verifies test infrastructure', () => {
+    console.log("in test infrastructure");
+    expect(true).toEqual(true);
+  });
+
+  const port = 1235;
+  let provider: Pact;
+  beforeAll(() => {
+    provider = new Pact({
+      consumer: consumerName,
+      provider: 'inventory-management-svc',
+      //provider: 'inventory-management-svc-solution-yks',      
+      port,
+      log: resolve(process.cwd(), "logs", "pact.log"),
+      dir: resolve(process.cwd(), "pacts"),
+    });
+    console.log("in before all, provider setup");
+    return provider.setup();
+  },30000);
+
+  let classUnderTest: StockItemsApi;
+  beforeEach(() => {
+    console.log("in before each---35");
+    Container.bind(StockItemServiceConfig).factory(() => ({
+        baseUrl: `http://localhost:${port}`
+        
+      }));
+
+    classUnderTest = Container.get(StockItemsApi);
+  });
+
+  afterAll(() => {
+    console.log("in afterAll, going to finalize");    
+    return provider.finalize();
+  });
+
+  
+
+  context('given listStockItems()', () => {
+    context('when called', () => {
+      
+      const expectedResult: BackendStockItem = {
+        id: '1234',
+        manufacturer: 'My manufacturer',
+        name: 'product name',
+        price: 20.0,
+        stock: 1000
+      };
+
+      beforeEach(() => {
+        console.log("in before each"+ provider.server);
+        return provider.addInteraction({
+          state: 'base state',
+          uponReceiving: 'a request for stock items',
+          withRequest: {
+            method: 'GET',
+            path: '/stock-items',
+            headers: {
+              'Accept': 'application/json',
+            }
+          },
+          willRespondWith: {
+            status: 200,
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: Matchers.eachLike(expectedResult),
+          }
+        });
+      });
+
+      test('should return inventory data', async () => {
+        const result = await classUnderTest.listStockItems();
+
+        expect(result).toEqual([{
+          id: expectedResult.id,
+          name: expectedResult.name,
+          description: expectedResult.name,
+          stock: expectedResult.stock,
+          unitPrice: expectedResult.price,
+          manufacturer: expectedResult.manufacturer,
+          picture: 'https://via.placeholder.com/32.png',
+        }]);
+      });
+
+      afterEach(() => {
+        return provider.verify();
+      });
+    });
+  });
+});
+```
+The image below is the example of contract:
+
+##A pact between inventory-management-bff and inventory-management-svc. 
+Requests from inventory-management-bff to inventory-management-svc
+
+.The image below is a request for stock items with a given base state:
+
+## Interactions
+```Given base state, upon receiving a request for stock items from graphql-ts-yks, with
+{
+  "method": "GET",
+  "path": "/stock-items",
+  "headers": {
+    "Accept": "application/json"
+  }
+}
+```
+Inventory-management-svc will respond with:
+```
+{
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": [
+    {
+      "id": "1234",
+      "manufacturer": "My manufacturer",
+      "name": "product name",
+      "price": 20,
+      "stock": 1000
+    }
+  ]
+}
+```
+
+
+
+
+
+
+
+
+
+
