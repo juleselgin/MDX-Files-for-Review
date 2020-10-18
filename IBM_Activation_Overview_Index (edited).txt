@@ -7,11 +7,11 @@ title: Overview
 Before working with Cloud-Native development, use this crafted enablement journey guide. It is important that you understand the basic concepts and developer tasks when working with Kubernetes or OpenShift. The following **Pre Learning** activities are highly encouraged to be completed if you have never seen or used a Kubernetes cluster for development before:
 <InlineNotification>
 
-[Katacoda](https://www.katacoda.com/) is an interactive learning and training platform for software developers. Each student is given access to a new environment without the need to install all the required component by themselves.
+[Katacoda](https://www.katacoda.com/) is an interactive learning and training platform for software developers. Each student is given access to a new environment without the need to install all the required components by themselves.
 
 </InlineNotification>
 
-The pre learning is categorized into three areas:
+The pre-learning is categorized into three areas:
 -  **Cloud-Native Deployment** approach **Cloud**, **12 Factor Applications** and **Cloud-Native Development**.
 -  **Cloud-Native Development** deployment using **Katacoda's**
 -  **RedHat OpenShift Learning Katacoda's** to help you get familiar with the OpenShift platform and tools
@@ -63,10 +63,9 @@ Complete the **Katacodas** and read the background material before using the **I
 
 </Row>
 
-Before working with Cloud Native development, read through the Cloud-Native overview. To complement the enablement material, there is a set of resources you can use to get more information on the powerful topic of **Cloud-Native**
+Before working with Cloud Native development, read through the Cloud-Native overview. To complement the enablement material, there is a set of resources you can use to get more information on the powerful topic of **Cloud-Native**:
 
 <AnchorLinks>
     <AnchorLink to="/enablement/agenda#introduction">Introduction to Cloud-Native</AnchorLink>
     <AnchorLink to="/enablement/agenda#redhat-openshift-and-ibm-kubernetes-fundamentals">RedHat OpenShift and IBM Kubernetes Fundamentals</AnchorLink>
 </AnchorLinks>
-.
