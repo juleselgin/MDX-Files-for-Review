@@ -5,11 +5,13 @@ title: Inventory Contract Testing
 import Globals from 'gatsby-theme-carbon/src/templates/Globals';
 
 As previously discussed, you should already have a thorough understanding of the importance of contract-testing and how it works. In this guide, we will implement contract-testing in the Inventory application. In the inventory application, Inventory-Service provides stock items and works as a provider, while Inventory BFF works as a consumer. Microservices work in isolation. It is the consumer’s responsibility to generate contact and the pact-broker's responsibility is to verify the response for the given request. In this guide, we will explain how to generate a contract(Pact). 
-We will use a ready-	made inventory BFF application, which we have developed in the developer Intermediate guide and implement contract-testing on top of it.        
+We will use a ready-made inventory BFF application, which we have developed in the Developer Intermediate guide and implement contract-testing on top of it.        
 
-To start, we have to create a pact by providing parameters (i.e., consumer, provider, port, log, dir).
+To start,
 
-We can take consumerName from package.json
+1. Create a pact by providing parameters (i.e., consumer, provider, port, log, dir).
+
+2. Take consumerName from package.json.
 ```
 const consumerName = npmPackage.name;
 ```
@@ -17,12 +19,12 @@ A provider name will be issued upon request. For inventory application, inventor
 ```
 provider: 'inventory-management-svc',
 ```
-Next we will provide log and pacts directory. Contract will be stored in the pacts directory. 
+3. Next we will provide log and pacts directory. Contract will be stored in the pacts directory. 
 ```
 log: resolve(process.cwd(), "logs", "pact.log"),
 dir: resolve(process.cwd(), "pacts"),
 ```
-The image below is a code with pact setup. Delay of 30000 was added for local testing, though it is not required for cluster deployment.
+The image below is a code with pact setup. Delay of 30000 was added for local testing, though it is not required for cluster deployment:
 ```
 beforeAll(() => {
     provider = new Pact({
@@ -49,7 +51,7 @@ let classUnderTest: StockItemsApi;
   });
  ```
 
-Add expected result
+4. Add expected result.
 ```
 const expectedResult: BackendStockItem = {
         id: '1234',
@@ -59,7 +61,7 @@ const expectedResult: BackendStockItem = {
         stock: 1000
 };
 ```
-The image below is the add interaction, which publishes the interaction to the Pact server so that it can be used to provide a mock response when the request is made.
+The image below is the add interaction, which publishes the interaction to the Pact server so that it can be used to provide a mock response when the request is made:
 ``` 
 beforeEach(() => {        
         return provider.addInteraction({
@@ -82,7 +84,7 @@ beforeEach(() => {
         });
       });
 ```
-The image below is the test, matching each and every attribute of the response with expected result.
+The image below is the test, matching each and every attribute of the response with expected result:
 ```
 test('should return inventory data', async () => {
         const result = await classUnderTest.listStockItems();
@@ -98,7 +100,7 @@ test('should return inventory data', async () => {
         }]);
       });
 ```
-The image below is the final code for contract testing.
+The image below is the final code for contract testing:
 ```
 import {join, resolve} from 'path';
 import {Container} from 'typescript-ioc';
