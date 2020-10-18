@@ -2,7 +2,7 @@
 title: Contributing
 ---
 
-## Roles and responsibilities
+## Roles and Responsibilities
 
 ### Consumers
 
@@ -17,13 +17,14 @@ _Evangelists_ are members of the community who help others become consumers of t
 
 ### Contributors
 
-_Contributors_ are members of the community who help maintain, improve, and expand the assets. Responsibilities:- Evangelize the assets
+_Contributors_ are members of the community who help maintain, improve, and expand the assets. Responsibilities:
+- Evangelize the assets
 - Resolve issues in GitHub to fix bugs, add features, and improve documentation
 - Submit changes as GitHub pull requests
 
 ### Maintainers
 
-_Project maintainers_ (aka maintainers) are project owners committed to the success of the assets in that project. Each project has designated team of maintainers, with a corresponding team lead. In addition to their participation as contributors, maintainers have these privileges:
+_Project maintainers_ (aka maintainers) are project owners committed to the success of the assets in that project. Each project has a designated team of maintainers, with a corresponding team lead. In addition to their participation as contributors, maintainers have these privileges:
 - Label, close, and manage GitHub issues
 - Close and merge GitHub pull requests
 - Nominate and vote on new maintainers
@@ -34,7 +35,7 @@ _Project maintainers_ (aka maintainers) are project owners committed to the succ
 
 Core team members are IBM employees responsible for the leadership and strategic direction of the set of Catalyst projects as a whole. The core team also directs how the Catalyst strategy will evolve with IBM Cloud product decisions. Core team responsibilities include:
 
-- Actively engagea with the projects' communities
+- Actively engages with the projects' communities
 - Sets overall direction and vision
 - Sets priorities and releases schedule
 - Focuses on broad, cross-cutting concerns
