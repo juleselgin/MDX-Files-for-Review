@@ -10,8 +10,7 @@ The IBM Garage Method for Cloud is IBM's approach to enable businesses, developm
  The IBM Garage Method is industry-recognized and represents a unique, holistic IBM point-of-view, describing the complete cloud adoption and transformation lifecycle with enhancements that support the enterprise at scale. The result is a method that is proven, aligned with industry best practices, and scalable to any size engagement.
 
 <p>
-    Use the following links to help you get a deeper understanding of IBM Cloud Garage development best practices
-: </p>
+    Use the following links to help you get a deeper understanding of IBM Cloud Garage development best practices: </p>
 <br></br>
 
 <ActivationPage content="gmd" >
