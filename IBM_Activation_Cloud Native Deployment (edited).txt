@@ -5,7 +5,7 @@ import ActivationPage from 'gatsby-theme-carbon/src/templates/ActivationPage';
 
 ### Containers
 
-Containers are modern ways of building and deploying software, instead of the traditional way of building for an environment. You build your code into a Container and move it to be deployed. This highly reduces the chance of encountering issues between environments, and it also speeds up the amount of time deploying software and microservices. You can use these Katacodas walkthrough for basic knowledge and understanding of Containers.
+Containers are modern ways of building and deploying software, instead of the traditional way of building for an environment. You build your code into a Container and move it to be deployed. This highly reduces the chance of encountering issues between environments, and it also speeds up the amount of time deploying software and microservices. You can use these Katacodas walkthroughs for basic knowledge and understanding of Containers.
 
 Task Requirements:
  - Read through the [Containers](/developer-foundation/containers) concepts page.
@@ -17,7 +17,9 @@ Task Requirements:
 
 ### Kubernetess
 
-Kubernetes has become the defacto stander for managing Container orchestration. Since most enterprises build a rather complex and scalable systems, running a single container is not going to be helpful. Kubernetes helps manage all the complex parts of an enterprise system - from horizontally and vertically scaling enterprise to configuration management and health.These self-paced learning modules provides walkthrough of basic kubernetes tasks via Katacoda.Task Requirements:
+Kubernetes has become the defacto stander for managing Container orchestration. Since most enterprises build rather complex and scalable systems, running a single container is not going to be helpful. Kubernetes helps manage all the complex parts of an enterprise system - from horizontally and vertically scaling enterprise to configuration management and health. These self-paced learning modules provide walkthrough of basic Kubernetes tasks via Katacoda. 
+
+Task Requirements:
  - Review [Kubernetes](/developer-foundation/kubernetes) Concept page.
  - Create a [Katacoda](https://www.katacoda.com/signup) Account.
 
@@ -29,7 +31,7 @@ Practices
 
 Use the following links to help you get a deeper understanding of Cloud-Native Deployment
 
-(MISSING LINKS, please specify if it is a text link.)<ActivationPage content="cndp">
+<ActivationPage content="cndp">
 </ActivationPage>
 
 Once you have completed these tasks, you should have a basic understanding of the key topics for Cloud-Native Deployment.
